@@ -110,7 +110,7 @@ impl TerminalSession {
 
     /// Check if child process is still alive
     pub async fn is_alive(&self) -> bool {
-        let child = self.child.lock().await;
+        let mut child = self.child.lock().await;
         child.try_wait().ok().flatten().is_none()
     }
 
