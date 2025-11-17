@@ -44,3 +44,4 @@ prebuild-src
 src/node_modules
 */target/
 Cargo.lock
+target/
