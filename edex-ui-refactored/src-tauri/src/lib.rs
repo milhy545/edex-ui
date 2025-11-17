@@ -2,6 +2,7 @@
 // High-performance sci-fi terminal emulator and system monitor
 
 mod sysmon;
+mod terminal;
 mod commands;
 
 use commands::AppState;
@@ -19,6 +20,13 @@ pub fn run() {
             commands::greet,
             commands::get_system_info,
             commands::get_memory_info,
+            commands::terminal_create,
+            commands::terminal_write,
+            commands::terminal_read,
+            commands::terminal_resize,
+            commands::terminal_close,
+            commands::terminal_list,
+            commands::terminal_is_alive,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

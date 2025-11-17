@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>eDEX-UI</title>
+
+    <!-- xterm.js for terminal emulation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
+
     <script type="module" src="/main.js" defer></script>
   </head>
 
@@ -42,6 +48,17 @@
           <button id="refresh-btn" class="btn-primary">Refresh</button>
           <button id="auto-refresh-btn" class="btn-secondary">Auto-Refresh: OFF</button>
         </div>
+      </section>
+
+      <section class="terminal-section">
+        <h2>Terminal</h2>
+        <div class="terminal-controls">
+          <button id="terminal-new-btn">New Terminal</button>
+          <button id="terminal-clear-btn">Clear</button>
+          <button id="terminal-close-btn">Close Terminal</button>
+          <span id="terminal-status" class="terminal-status">No active terminal</span>
+        </div>
+        <div id="terminal-container"></div>
       </section>
 
       <section class="test-section">
