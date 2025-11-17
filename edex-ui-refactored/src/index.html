@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
 
+    <!-- Globe renderer -->
+    <script type="module" src="/globe-renderer.js"></script>
     <script type="module" src="/main.js" defer></script>
   </head>
 
@@ -47,6 +49,21 @@
         <div class="controls">
           <button id="refresh-btn" class="btn-primary">Refresh</button>
           <button id="auto-refresh-btn" class="btn-secondary">Auto-Refresh: OFF</button>
+        </div>
+      </section>
+
+      <section class="globe-section">
+        <h2>3D Globe Visualization</h2>
+        <div class="globe-controls">
+          <button id="globe-start-btn">Start Animation</button>
+          <button id="globe-stop-btn">Stop Animation</button>
+          <span id="globe-status" class="globe-status">WebGPU not initialized</span>
+        </div>
+        <div class="globe-container">
+          <canvas id="globe-canvas" width="800" height="600"></canvas>
+          <div id="globe-fallback" class="globe-fallback" style="display: none;">
+            WebGPU not supported in this browser. Please use a modern browser with WebGPU support.
+          </div>
         </div>
       </section>
 

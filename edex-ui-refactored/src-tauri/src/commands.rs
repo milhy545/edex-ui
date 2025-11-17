@@ -3,6 +3,7 @@
 
 use crate::sysmon::{SystemMonitor, SystemSnapshot};
 use crate::terminal::{TerminalManager, TerminalConfig};
+use crate::globe::{GlobeGeometry, generate_hexasphere, generate_grid_lines};
 use std::sync::Arc;
 use tokio::sync::Mutex as TokioMutex;
 use tauri::State;
@@ -135,6 +136,30 @@ pub async fn terminal_is_alive(
 ) -> Result<bool, String> {
     let manager = state.terminal_manager.lock().await;
     Ok(manager.is_session_alive(&session_id).await)
+}
+
+// ============================================================================
+// Globe Commands
+// ============================================================================
+
+/// Get globe geometry (hexasphere/icosphere)
+#[tauri::command]
+pub fn get_globe_geometry(subdivisions: u8) -> Result<GlobeGeometry, String> {
+    if subdivisions > 6 {
+        return Err("Subdivisions must be <= 6 (performance limit)".to_string());
+    }
+
+    Ok(generate_hexasphere(subdivisions))
+}
+
+/// Get grid lines for wireframe rendering
+#[tauri::command]
+pub fn get_globe_grid_lines(subdivisions: u8) -> Result<Vec<f32>, String> {
+    if subdivisions > 6 {
+        return Err("Subdivisions must be <= 6 (performance limit)".to_string());
+    }
+
+    Ok(generate_grid_lines(subdivisions))
 }
 
 #[cfg(test)]

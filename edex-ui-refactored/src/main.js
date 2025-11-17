@@ -1,6 +1,8 @@
 // eDEX-UI Frontend - Main JavaScript
 // Communicates with Tauri Rust backend
 
+import { GlobeRenderer } from '/globe-renderer.js';
+
 const { invoke } = window.__TAURI__.core;
 
 let autoRefreshInterval = null;
@@ -11,6 +13,9 @@ let terminal = null;
 let terminalSessionId = null;
 let terminalOutputInterval = null;
 const fitAddon = new FitAddon.FitAddon();
+
+// Globe state
+let globeRenderer = null;
 
 // Format bytes to human readable
 function formatBytes(bytes) {
@@ -268,6 +273,54 @@ function updateTerminalStatus(message) {
   document.getElementById('terminal-status').textContent = message;
 }
 
+// ============================================================================
+// Globe Functions
+// ============================================================================
+
+// Initialize WebGPU globe
+async function initGlobe() {
+  const canvas = document.getElementById('globe-canvas');
+  const fallback = document.getElementById('globe-fallback');
+  const statusEl = document.getElementById('globe-status');
+
+  try {
+    statusEl.textContent = 'Initializing WebGPU...';
+
+    globeRenderer = new GlobeRenderer(canvas);
+    const success = await globeRenderer.init();
+
+    if (success) {
+      statusEl.textContent = 'WebGPU ready - Click Start to animate';
+      canvas.style.display = 'block';
+      fallback.style.display = 'none';
+      console.log('Globe initialized successfully');
+    } else {
+      throw new Error('WebGPU initialization failed');
+    }
+  } catch (error) {
+    console.error('Failed to initialize globe:', error);
+    statusEl.textContent = 'WebGPU not supported';
+    canvas.style.display = 'none';
+    fallback.style.display = 'block';
+  }
+}
+
+// Start globe animation
+function startGlobe() {
+  if (globeRenderer) {
+    globeRenderer.start();
+    document.getElementById('globe-status').textContent = 'Animating (30 FPS target)';
+  }
+}
+
+// Stop globe animation
+function stopGlobe() {
+  if (globeRenderer) {
+    globeRenderer.stop();
+    document.getElementById('globe-status').textContent = 'Animation stopped';
+  }
+}
+
 // Initialize when DOM is ready
 window.addEventListener('DOMContentLoaded', () => {
   // Setup system info event listeners
@@ -306,14 +359,22 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('terminal-close-btn')
     .addEventListener('click', closeTerminalSession);
 
-  // Initialize terminal UI
+  // Setup globe event listeners
+  document.getElementById('globe-start-btn')
+    .addEventListener('click', startGlobe);
+
+  document.getElementById('globe-stop-btn')
+    .addEventListener('click', stopGlobe);
+
+  // Initialize components
   initTerminal();
+  initGlobe();
 
   // Initial system info load
   updateSystemInfo();
 
   console.log('eDEX-UI v3.0 initialized');
   console.log('Backend: Tauri + Rust');
-  console.log('Features: System Monitor + PTY Terminal');
+  console.log('Features: System Monitor + PTY Terminal + WebGPU Globe');
   console.log('Expected performance: -85% RAM, -80% CPU');
 });

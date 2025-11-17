@@ -159,6 +159,49 @@ button.active,
   box-shadow: 0 0 20px rgba(106, 195, 213, 0.5);
 }
 
+/* Globe Section */
+.globe-section {
+  margin-bottom: 3rem;
+}
+
+.globe-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.globe-status {
+  color: var(--color-text-dim);
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+
+.globe-container {
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-border);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#globe-canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.globe-fallback {
+  color: var(--color-text-dim);
+  padding: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
 /* Terminal Section */
 .terminal-section {
   margin-bottom: 3rem;

@@ -3,6 +3,7 @@
 
 mod sysmon;
 mod terminal;
+mod globe;
 mod commands;
 
 use commands::AppState;
@@ -27,6 +28,8 @@ pub fn run() {
             commands::terminal_close,
             commands::terminal_list,
             commands::terminal_is_alive,
+            commands::get_globe_geometry,
+            commands::get_globe_grid_lines,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
