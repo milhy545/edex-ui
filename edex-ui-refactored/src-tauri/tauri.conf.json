@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "eDEX-UI",
+  "version": "3.0.0",
+  "identifier": "com.edex-ui.refactored",
+  "build": {
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "eDEX-UI",
+        "width": 1920,
+        "height": 1080,
+        "fullscreen": true,
+        "resizable": true,
+        "decorations": false,
+        "transparent": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "DeveloperTool",
+    "shortDescription": "Sci-fi terminal emulator and system monitor",
+    "longDescription": "A fullscreen, cross-platform terminal emulator and system monitor with a sci-fi aesthetic. Refactored with Tauri and Rust for maximum performance.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
