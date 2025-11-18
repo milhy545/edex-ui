@@ -45,3 +45,6 @@ src/node_modules
 */target/
 Cargo.lock
 target/
+
+# KDE/Dolphin metadata
+.directory
