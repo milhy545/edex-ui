@@ -31,6 +31,15 @@ Vytvořena testovací VM na Google Cloud s GPU pro testování eDEX-UI:
   - `QUICK_START.md` - Rychlý návod (5 příkazů)
   - `CREATE_VM.md` - Detailní návod
 
+### 3. Hlasové Služby (Speech-to-Text / Text-to-Speech)
+Dokumentace hlasových služeb pro zjednodušení práce s Claudem:
+
+- ✅ **Dokumentace:** `docs/VOICE_SERVICES.md`
+  - Možnosti diktování (vestavěné Claude.ai, Google Cloud, Whisper, OS)
+  - Možnosti přehrávání odpovědí (vestavěné Claude.ai, browser extensions, Google Cloud TTS, lokální TTS)
+  - Doporučené setup varianty
+  - Wrapper skript pro kompletní hlasové rozhraní
+
 ---
 
 ## 🖥️ BĚŽÍCÍ VM NA GOOGLE CLOUD
@@ -205,6 +214,7 @@ sudo systemctl restart vncserver@1
 
 ### V repository:
 - `docs/v3.0-refactoring/` - Kompletní refaktoring dokumentace
+- `docs/VOICE_SERVICES.md` - **Hlasové služby (Speech-to-Text / TTS)** 🎤🔊
 - `gcloud-setup/` - Google Cloud setup skripty
 - `README.md` - Hlavní README (možná zastaralý, refaktoring je nový)
 
